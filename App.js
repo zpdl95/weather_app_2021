@@ -18,7 +18,7 @@ export default class extends React.Component {
       },
       data: { weather },
     } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric&lang=kr`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
     );
     this.setState({
       isLoading: false,
@@ -35,7 +35,6 @@ export default class extends React.Component {
       const {
         coords: { latitude: lat, longitude: long },
       } = await Location.getCurrentPositionAsync();
-      // Send to API and get weather
       this.getWeather(lat, long);
     } catch (error) {
       /* 첫번째 인자는 타이틀, 두번째 인자는 내용 */

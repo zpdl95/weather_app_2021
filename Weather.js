@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StyleSheet, Text, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // const conditionCode = (con) => {
 //   if (con <= 232) {
@@ -20,24 +21,46 @@ import { StyleSheet, Text, View } from "react-native";
 //   }
 // };
 
-export default function Weather({ temp, condition }) {
+export default function Weather({ temp }) {
   //   const sky = conditionCode(condition);
 
   return (
     <View style={styles.container}>
-      <Text>{condition}</Text>
-      <Text>{temp}</Text>
+      <View style={styles.halfcontainer}>
+        <MaterialCommunityIcons size={100} name="weather-lightning-rainy" />
+        <Text style={styles.temp}>{temp}°</Text>
+      </View>
+      <View style={styles.halfcontainer} />
     </View>
   );
 }
 
-Weather.prototype = {
+Weather.propTypes = {
   temp: PropTypes.number.isRequired,
-  condition: PropTypes.number.isRequired,
+  condition: PropTypes.oneOf([
+    "Thunderstorm",
+    "Drizzle",
+    "Rain",
+    "Snow",
+    "Atmosphere",
+    "Clear",
+    "Clouds",
+    "Haze",
+    "Mist",
+    "Dust",
+  ]).isRequired,
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  temp: {
+    fontSize: 40,
+  },
+  halfcontainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
