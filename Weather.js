@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 // const conditionCode = (con) => {
 //   if (con <= 232) {
@@ -21,17 +22,72 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 //   }
 // };
 
-export default function Weather({ temp }) {
+const weatherOptions = {
+  Haze: {
+    iconName: "weather-hail",
+    gradient: ["#4DA0B0", "#D39D38"],
+  },
+  Thunderstorm: {
+    iconName: "",
+    gradient: [],
+  },
+  Drizzle: {
+    iconName: "",
+    gradient: [],
+  },
+  Rain: {
+    iconName: "",
+    gradient: [],
+  },
+  Snow: {
+    iconName: "",
+    gradient: [],
+  },
+  Atmosphere: {
+    iconName: "",
+    gradient: [],
+  },
+  Clear: {
+    iconName: "",
+    gradient: [],
+  },
+  Clouds: {
+    iconName: "",
+    gradient: [],
+  },
+  Haze: {
+    iconName: "",
+    gradient: [],
+  },
+  Mist: {
+    iconName: "",
+    gradient: [],
+  },
+  Dust: {
+    iconName: "",
+    gradient: [],
+  },
+};
+
+export default function Weather({ temp, condition }) {
   //   const sky = conditionCode(condition);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={weatherOptions[condition].gradient}
+      style={styles.container}
+    >
+      <StatusBar barStyle="light-content" />
       <View style={styles.halfcontainer}>
-        <MaterialCommunityIcons size={100} name="weather-lightning-rainy" />
+        <MaterialCommunityIcons
+          size={100}
+          name={weatherOptions[condition].iconName}
+          color="white"
+        />
         <Text style={styles.temp}>{temp}°</Text>
       </View>
       <View style={styles.halfcontainer} />
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -59,6 +115,7 @@ const styles = StyleSheet.create({
   },
   temp: {
     fontSize: 40,
+    color: "white",
   },
   halfcontainer: {
     flex: 1,
