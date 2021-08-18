@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     /* View = div, Text = span */
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="default" />
       <Text style={styles.text}>Getting the fucking weather</Text>
     </View>
   );
